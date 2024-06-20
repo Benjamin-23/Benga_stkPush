@@ -21,9 +21,6 @@ const getAccessToken = async () => {
 
 const registerUrls = async () => {
   const accessToken = await getAccessToken();
-  // see if we have the token
-  console.log(accessToken, "token");
-  console.log(registerUrl);
   const response = await axios.post(
     registerUrl,
     {
@@ -38,7 +35,11 @@ const registerUrls = async () => {
   return response.data;
 };
 
-const simulateTransaction = async (amount, phoneNum, reference) => {
+
+// simulateUrl
+// simulate  the transcation
+
+const simulateTransaction = async (amount, phoneNumber, reference) => {
   const accessToken = await getAccessToken();
   const response = await axios.post(
     simulateUrl,
@@ -46,7 +47,7 @@ const simulateTransaction = async (amount, phoneNum, reference) => {
       ShortCode: shortCode,
       CommandID: "CustomerPayBillOnline",
       Amount: amount,
-      Msisdn: phoneNum,
+      Msisdn: phoneNumber,
       BillRefNumber: reference,
     },
     { headers: { Authorization: `Bearer ${accessToken}` } }
